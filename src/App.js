@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useReducer, useState } from 'react';
+
+import { CenterContext, centerReducer } from './context/map';
+import AddArea from './components/addArea/AddArea';
+import { PointsContext, pointsReducer } from './context/points';
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [center, setCenter] = useReducer(centerReducer, {lat: 31.7875,lng: 34.6635})
+  const [points, setPoints] = useReducer(pointsReducer, [])
+  return <>
+    <CenterContext.Provider value={{ center, setCenter }}>
+      <PointsContext.Provider value={{ points, setPoints }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
+          <AddArea zoom={1} />
+        </div>
+      </PointsContext.Provider>
+    </CenterContext.Provider>
+  </>
 }
 
 export default App;
