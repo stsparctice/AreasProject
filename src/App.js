@@ -11,28 +11,15 @@ import Map4 from './components/Map4';
 
 
 function App() {
-  const [center, setCenter] = useReducer(centerReducer, {lat: 31.7875,lng: 34.6635})
+  const [center, setCenter] = useReducer(centerReducer, { lat: 31.7875, lng: 34.6635 })
   const [points, setPoints] = useReducer(pointsReducer, [])
   return <>
     <CenterContext.Provider value={{ center, setCenter }}>
-      <PointsContext.Provider value={{ points, setPoints }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
-          <AddArea zoom={1} />
-        </div>
- 
-
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
-        {/* <Map1 zoom={3} /> */}
-        <Map3 zoom={3} />
-      </div>
-      </PointsContext.Provider>
+      <PointArea />
     </CenterContext.Provider>
-    {/* <FindAreasBetweenPoints></FindAreasBetweenPoints> */}
-    {/* <MyComponent></MyComponent> */}
-    {/* <MapComponent></MapComponent> */}
 
   </>
-} 
+}
 
 
 export default App;
